@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb103a9a2ee02a4dabde3ab4b289ec5, type: 3}
+  m_Name: TestDialogue
+  m_EditorClassIdentifier: 
+  startNode:
+    dialogueText: Hello traveller, can you help me gather some herbs from the forest?
+    choices:
+    - choiceText: sure, i can help you!
+      nextNode:
+        dialogueText: thank you, i need some herbs, it grows near the stream.
+        choices:
+        - choiceText: ok bbs
+          nextNode:
+            dialogueText: 
+            choices: []
+          flagToSet: Quest Accepted
+          flagValue: 1
+      flagToSet: 
+      flagValue: 0
+    - choiceText: no im busy!
+      nextNode:
+        dialogueText: oh ok no worries.
+        choices: []
+      flagToSet: Did not help NPC1
+      flagValue: 1
+  alternativeDialogues:
+  - flagRequired: Did not help NPC1
+    alternativeStartNode:
+      dialogueText: Hello again, are you still busy?
+      choices:
+      - choiceText: Im free now.
+        nextNode:
+          dialogueText: 
+          choices: []
+        flagToSet: Did not help NPC1
+        flagValue: 0
+      - choiceText: Im still busy.
+        nextNode:
+          dialogueText: 
+          choices: []
+        flagToSet: 
+        flagValue: 0
+  - flagRequired: Quest Completed
+    alternativeStartNode:
+      dialogueText: Thanks for helping me
+      choices: []
+  - flagRequired: Quest Accepted
+    alternativeStartNode:
+      dialogueText: Welcome back, did you find the herbs?
+      choices:
+      - choiceText: Yes
+        nextNode:
+          dialogueText: 
+          choices: []
+        flagToSet: Quest Completed
+        flagValue: 1
+      - choiceText: No
+        nextNode:
+          dialogueText: 
+          choices: []
+        flagToSet: 
+        flagValue: 0
